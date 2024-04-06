@@ -9,6 +9,13 @@ namespace BlackJackOffline
     {
         public Image fillImage;
 
+        public Transform glow;
+
+        private void Update()
+        {
+            glow.Rotate(Vector3.forward, 10 * Time.deltaTime);
+        }
+
         private void OnEnable()
         {
             LoadingfillAnimation(0.15f);

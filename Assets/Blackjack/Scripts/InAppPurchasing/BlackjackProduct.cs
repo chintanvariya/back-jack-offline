@@ -24,9 +24,12 @@ namespace BlackJackOffline
         {
             Model = Product;
             PriceText.text = $"{Product.metadata.localizedPriceString} ";
+
+            Debug.Log($"------------> {Product.metadata.localizedPriceString}");
+            Debug.Log($"------------> {Product.metadata.localizedDescription}");
             // +$"{Product.metadata.isoCurrencyCode}");
             discriptionText.text = $"{Product.metadata.localizedDescription}";
-            Texture2D texture = BlackjackStoreIconProvider.GetIcon(Product.definition.id);
+            Texture2D texture = null;//= BlackjackStoreIconProvider.GetIcon(Product.definition.id);
             if (texture != null)
             {
                 Sprite sprite = Sprite.Create(texture,

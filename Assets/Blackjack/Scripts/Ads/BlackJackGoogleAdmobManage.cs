@@ -22,7 +22,7 @@ namespace BlackJackOffline
             else
             {
                 Destroy(gameObject);
-            }    
+            }
         }
 
         private void Start()
@@ -35,7 +35,8 @@ namespace BlackJackOffline
         internal void InitializeAds()
         {
             Debug.Log("Initializing Admob ..........");
-            MobileAds.Initialize(initStatus => {
+            MobileAds.Initialize(initStatus =>
+            {
                 StartGameLoad();
             });
             MobileAds.RaiseAdEventsOnUnityMainThread = true;
@@ -83,7 +84,7 @@ namespace BlackJackOffline
         //    var adRequest = new AdRequest();
 
         //    this.bannerAds.LoadAd(adRequest);
-           
+
         //    bannerAds.OnAdFullScreenContentOpened += () =>
         //    {
         //        isBannerShow = "Show";
@@ -124,12 +125,12 @@ namespace BlackJackOffline
 
         private void RequestInterstitial()
         {
-#if UNITY_ANDROID && UNITY_EDITOR//TODO:Add proper IDs
-            string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+#if UNITY_ANDROID  &&  !UNITY_EDITOR
+            string adUnitId = "ca-app-pub-5918737477932362/3438833279";
 #elif UNITY_IPHONE
         string adUnitId = "";
-#else
-        string adUnitId = "";
+#elif  UNITY_EDITOR
+            string adUnitId = "ca-app-pub-3940256099942544/1033173712";
 #endif
 
             // Clean up the old ad before loading a new one.
@@ -207,12 +208,12 @@ namespace BlackJackOffline
         void RequestRewarded()
         {
             string adUnitId;
-#if UNITY_ANDROID && UNITY_EDITOR
-            adUnitId = "ca-app-pub-3940256099942544/5224354917";
+#if UNITY_ANDROID && !UNITY_EDITOR
+        adUnitId = "ca-app-pub-5918737477932362/5873424927";
 #elif UNITY_IPHONE
         adUnitId = "";
 #else
-        adUnitId = "";
+            adUnitId = "ca-app-pub-3940256099942544/5224354917";
 #endif
             // Clean up the old ad before loading a new one.
             if (rewardedAd != null)

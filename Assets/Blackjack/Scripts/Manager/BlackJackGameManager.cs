@@ -219,6 +219,9 @@ namespace BlackJackOffline
         {
             BlackJackSettingManager.instance.OpenSettingPanel(isLobby);
         }
+
+        public void RateUs() => Application.OpenURL("https://play.google.com/store/apps/developer?id=Finix+Games+Studio");
+        
     }
 }
  

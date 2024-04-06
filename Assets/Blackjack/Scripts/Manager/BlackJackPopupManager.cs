@@ -31,11 +31,11 @@ public class BlackJackPopupManager : MonoBehaviour
     [SerializeField]
     private Text headerTxt, descriptionTxt;
     [SerializeField]
-    private Button yesButton, noButton , gameLeaveButton , exitButton;
+    private Button yesButton, noButton, gameLeaveButton, exitButton;
     [SerializeField]
     private Text yesButtonTxt, noButtonTxt;
     [SerializeField]
-    private GameObject mainManu ;
+    private GameObject mainManu;
     string type;
 
     private void Update()
@@ -90,7 +90,7 @@ public class BlackJackPopupManager : MonoBehaviour
                 UnityEditor.EditorApplication.isPlaying = false;
 #endif
 #if PLATFORM_ANDROID
-                    Application.Quit();
+                Application.Quit();
 #endif
                 break;
             case "LeaveTable":
@@ -115,15 +115,26 @@ public class BlackJackPopupManager : MonoBehaviour
     internal void LeaveTable()
     {
         Debug.Log("LeaveTable");
-        BlackJackGoogleAdmobManage.Instance.ShoWInterstitialAds();
+        blackScreen.SetActive(true);
+        StartCoroutine(LeaveTableWithDelay());
+    }
+
+    public GameObject blackScreen;
+
+    IEnumerator LeaveTableWithDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        blackScreen.SetActive(false);
+        BlackJackGameManager.instance.ScreenChange("MainManuPanel");
         LeaveTableStatisticUpdate();
         BlackJackDataManager.lobbyName = "";
         BlackJackDataManager.lobbyMinValue = 0;
         BlackJackDataManager.lobbyMaxValue = 0;
         BlackJackGameManager.instance.betButtons.lastBet = 0;
         //SceneManager.LoadScene(0);
-        BlackJackGameManager.instance.ScreenChange("MainManuPanel");
         SettingPopupObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        BlackJackGoogleAdmobManage.Instance.ShoWInterstitialAds();
     }
 
     private void LeaveTableStatisticUpdate()
@@ -218,7 +229,7 @@ public class BlackJackPopupManager : MonoBehaviour
     [SerializeField]
     private Text discriptionTxt;
     [SerializeField]
-    private Button alertOkButton; 
+    private Button alertOkButton;
     [SerializeField]
     private Text ToastDiscriptionTxt;
     [SerializeField]
