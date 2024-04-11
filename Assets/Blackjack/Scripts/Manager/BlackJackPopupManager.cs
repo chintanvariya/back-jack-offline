@@ -160,7 +160,7 @@ public class BlackJackPopupManager : MonoBehaviour
         {
             if (!mainManu.activeInHierarchy && BlackJackGameManager.instance.gameScreens[1].activeInHierarchy)
             {
-                BlackJackGoogleAdmobManage.Instance.ShoWInterstitialAds();
+                //BlackJackGoogleAdmobManage.Instance.ShoWInterstitialAds();
                 SetLeavePopupData("GamePause");
             }
         }

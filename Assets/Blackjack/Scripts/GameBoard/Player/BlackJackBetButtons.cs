@@ -127,18 +127,26 @@ namespace BlackJackOffline
             SetTableAsLimiteBetsText();
             betButton.gameObject.SetActive(false);
             confirmButtonObject.gameObject.SetActive(true);
+            betButtonFooter.SetActive(true);
+
         }
 
         internal void SetTableAsLimiteBetsText()
         {
+            partValue.Clear();
+
             creditPointTxt.text = BlackJackGameManager.instance.SetBalanceFormat(BlackJackDataManager.creditPoint);
             minValue = BlackJackDataManager.lobbyMinValue;
             diffValue = BlackJackDataManager.lobbyMaxValue - BlackJackDataManager.lobbyMinValue;
             float diffAount = diffValue / 6;
             betsTexts[0].text = BlackJackGameManager.instance.SetBalanceFormat(minValue);
+            partValue.Add(BlackJackGameManager.instance.SetRoundFormat(minValue));
+            buttonBetTexts[0].text = BlackJackGameManager.instance.SetBalanceFormat(minValue);
             for (int i = 1; i < betsTexts.Count; i++)
             {
                 betsTexts[i].text = BlackJackGameManager.instance.SetBalanceFormat(minValue + (diffAount * i));
+                buttonBetTexts[i].text = BlackJackGameManager.instance.SetBalanceFormat(minValue + (diffAount * i));
+                partValue.Add(BlackJackGameManager.instance.SetRoundFormat(minValue + (diffAount * i)));
             }
             scrollbar.value = 0;
             lastValue = 0;
@@ -146,6 +154,8 @@ namespace BlackJackOffline
             SliderText.text = BlackJackGameManager.instance.SetBalanceFormat(minValue);
             float credite = BlackJackDataManager.creditPoint - minValue;
             maxScrollLimit = credite / diffValue;
+
+
         }
 
         public float maxScrollLimit;
@@ -189,8 +199,41 @@ namespace BlackJackOffline
             SliderText.text = BlackJackGameManager.instance.SetBalanceFormat(selectAmount);
         }
 
+        public List<float> partValue;
+        public List<Text> buttonBetTexts;
+        public GameObject betButtonFooter;
+
+        public void OnBetValue(int buttonIndex)
+        {
+            switch (buttonIndex)
+            {
+                case 0:
+                    selectAmount = BlackJackGameManager.instance.SetRoundFormat(partValue[0]);
+                    break;
+                case 1:
+                    selectAmount = BlackJackGameManager.instance.SetRoundFormat(partValue[1]);
+                    break;
+                case 2:
+                    selectAmount = BlackJackGameManager.instance.SetRoundFormat(partValue[2]);
+                    break;
+                case 3:
+                    selectAmount = BlackJackGameManager.instance.SetRoundFormat(partValue[3]);
+                    break;
+                case 4:
+                    selectAmount = BlackJackGameManager.instance.SetRoundFormat(partValue[4]);
+                    break;
+                case 5:
+                    selectAmount = BlackJackGameManager.instance.SetRoundFormat(partValue[5]);
+                    break;
+                case 6:
+                    selectAmount = BlackJackGameManager.instance.SetRoundFormat(partValue[6]);
+                    break;
+            }
+        }
+
         public void ConfirmButtonClicked()
         {
+            betButtonFooter.SetActive(false);
             PlaceBetButtonAction(false);
             MoveSide(downPosition);
             float placeAmount = 0;
