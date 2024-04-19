@@ -345,7 +345,7 @@ namespace BlackJackOffline
             //coinText.text = PlayerPrefs.GetInt("TotalCoins").ToString();
 
             BlackJackGameManager.instance.UpdateUserInfo();
-
+            BlackJackGameManager.instance.popupManager.SetAlertPopup("PurchaseSuccess");
             // saving purchased products to the cloud, and when that save is delayed. 
             return PurchaseProcessingResult.Complete;
         }

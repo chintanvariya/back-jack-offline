@@ -47,8 +47,9 @@ namespace BlackJackOffline
 
         public void Purchase()
         {
-            PurchaseButton.enabled = false;
-            OnPurchase?.Invoke(Model, HandlePurchaseComplete);
+            BlackjackInAppPurchasing.Instance.CheckPurchase(Model);
+            //PurchaseButton.enabled = false;
+            //OnPurchase?.Invoke(Model, HandlePurchaseComplete);
         }
 
         private void HandlePurchaseComplete()
