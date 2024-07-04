@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "469056136021",
+    "project_id": "black-jack-offline-69c5f",
+    "storage_bucket": "black-jack-offline-69c5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469056136021:android:5aa0911e05bc2cdf3105dc",
+        "android_client_info": {
+          "package_name": "com.finixgamesstudio.blackjackoffline"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6sXS4kHMHGHiqrwcIf0qhjqqP8OYnNek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
