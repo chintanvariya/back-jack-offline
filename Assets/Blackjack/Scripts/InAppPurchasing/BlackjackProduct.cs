@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
@@ -18,38 +17,42 @@ namespace BlackJackOffline
         public delegate void PurchaseEvent(Product Model, Action OnComplete);
         public event PurchaseEvent OnPurchase;
 
-        private Product Model;
+        private Product product;
 
         public void Setup(Product Product)
         {
-            Model = Product;
+            product = Product;
             PriceText.text = $"{Product.metadata.localizedPriceString} ";
 
-            Debug.Log($"------------> {Product.metadata.localizedPriceString}");
-            Debug.Log($"------------> {Product.metadata.localizedDescription}");
+            Debug.Log($"Unity------------> {Product.metadata.localizedPriceString}");
+            Debug.Log($"Unity------------> {Product.metadata.localizedDescription}");
             // +$"{Product.metadata.isoCurrencyCode}");
             discriptionText.text = $"{Product.metadata.localizedDescription}";
-            Texture2D texture = null;//= BlackjackStoreIconProvider.GetIcon(Product.definition.id);
-            if (texture != null)
-            {
-                Sprite sprite = Sprite.Create(texture,
-                    new Rect(0, 0, texture.width, texture.height),
-                    Vector2.one / 2f
-                );
-
-                Icon.sprite = sprite;
-            }
-            else
-            {
-                Debug.LogError($"No Sprite found for {Product.definition.id}!");
-            }
+            //Texture2D texture = null;//= BlackjackStoreIconProvider.GetIcon(Product.definition.id);
+            //if (texture != null)
+            //{
+            //    Sprite sprite = Sprite.Create(texture,
+            //        new Rect(0, 0, texture.width, texture.height),
+            //        Vector2.one / 2f
+            //    );
+            //    Icon.sprite = sprite;
+            //}
+            //else
+            //{
+            //    Debug.LogError($"No Sprite found for {Product.definition.id}!");
+            //}
         }
 
         public void Purchase()
         {
-            BlackjackInAppPurchasing.Instance.CheckPurchase(Model);
+            BlackjackInAppPurchasing.Instance.GoingToPurchase(product);
             //PurchaseButton.enabled = false;
             //OnPurchase?.Invoke(Model, HandlePurchaseComplete);
+        }
+
+        public void OnButtonClicked()
+        {
+          
         }
 
         private void HandlePurchaseComplete()

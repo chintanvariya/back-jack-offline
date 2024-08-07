@@ -307,7 +307,7 @@ public class BlackJackPopupManager : MonoBehaviour
     #region Coin Store Popup
     [Header("-------- Coin Store Popup -----------")]
     [SerializeField]
-    private GameObject coinPopupObject;
+    public GameObject coinPopupObject;
     [SerializeField]
     private Button coinStoreCloseButton;
 
@@ -321,6 +321,7 @@ public class BlackJackPopupManager : MonoBehaviour
                 CloseCoinStore(Action);
             });
             coinPopupObject.gameObject.SetActive(true);
+            BlackjackInAppPurchasing.Instance.OpenScreen();
             SettingPopupObject.SetActive(false);
         }
         else

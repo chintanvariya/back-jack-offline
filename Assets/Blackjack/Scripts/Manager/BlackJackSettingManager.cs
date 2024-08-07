@@ -46,11 +46,11 @@ namespace BlackJackOffline
         {
             if (isPrivacy)
             {
-                Application.OpenURL("https://artoongames.com/privacy-policy/");
+                Application.OpenURL("https://finixgamesstudio.com/privacy-policy/");
             } 
             else
             {
-                Application.OpenURL("https://artoongames.com/terms-and-conditions/");
+                Application.OpenURL("https://finixgamesstudio.com/privacy-policy/");
             }
         }
 

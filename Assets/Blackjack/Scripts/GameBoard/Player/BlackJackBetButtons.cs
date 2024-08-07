@@ -264,7 +264,10 @@ namespace BlackJackOffline
         internal void PlaceBetTimerOver()
         {
             //confirmButtonObject.gameObject.SetActive(false);
-            player.placeYourBetTxt.SetActive(true);
+            //player.placeYourBetTxt.SetActive(true);
+            SetTableAsLimiteBetsText();
+            OnBetValue(0);
+            ConfirmButtonClicked();
         }
 
         void PlaceBetButtonAction(bool Action)

@@ -28,7 +28,7 @@ namespace BlackJackOffline
         private void Start()
         {
             tabToCollectButton.onClick.AddListener(TapToCollectButtonClicked);
-            InitializeAds();
+            //InitializeAds();
         }
 
 
@@ -125,13 +125,18 @@ namespace BlackJackOffline
 
         private void RequestInterstitial()
         {
-#if UNITY_ANDROID  &&  !UNITY_EDITOR
-            string adUnitId = "ca-app-pub-5918737477932362/3438833279";
+
+            string adUnitId = string.Empty;
+            if (FirebaseController.instance.remoteConfigData.flagDetails.isSuccess)
+#if UNITY_ANDROID && !UNITY_EDITOR
+                    adUnitId = FirebaseController.instance.remoteConfigData.adsDetails.androidAdsIds.blackJackInterstitial;
 #elif UNITY_IPHONE
-        string adUnitId = "";
-#elif  UNITY_EDITOR
-            string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+                    adUnitId = FirebaseController.instance.remoteConfigData.adsDetails.iosAdsIds.blackJackInterstitial;
+#elif UNITY_EDITOR
+                adUnitId = "ca-app-pub-3940256099942544/1033173712";
 #endif
+            else
+                adUnitId = "ca-app-pub-5918737477932362/3438833279";
 
             // Clean up the old ad before loading a new one.
             if (interstitial != null)
